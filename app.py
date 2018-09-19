@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # Variables
 artifactoryUrl='http://artifactory.in/artifactory/api' 
-username="admin"
+username="username"
 password="password" 
 
 # Common Functions
@@ -22,6 +22,7 @@ def main():
 def listDockerRepo(repoName):
 	try:    
 		response=getRequest(artifactoryUrl+'/docker/'+repoName+'/v2/_catalog',username,password)	
+		print response.text
 		return json.dumps(response.text)
 	except Exception, e:
 		return(str(e)) 
@@ -37,4 +38,4 @@ def searchAql():
 		return(str(e)) 		
 
 if __name__ == "__main__":
-    app.run(debug=True,host="192.168.33.10",port="4000")
+    app.run(debug=True,host="10.223.251.165",port="4000")
